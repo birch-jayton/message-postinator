@@ -43,7 +43,7 @@ function Builder() {
         }}
       >
         <Typography component="h1" variant="h5">
-          Create Blaster
+          Create a Blaster
         </Typography>
         <Box
           component="form"

@@ -29,7 +29,7 @@ const darkTheme = createTheme({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <ThemeProvider theme={darkTheme}>
     <React.StrictMode>
-      <SnackbarProvider maxSnack={5}>
+      <SnackbarProvider maxSnack={2}>
         <AppNavBar />
         <RouterProvider router={router} />
       </SnackbarProvider>
