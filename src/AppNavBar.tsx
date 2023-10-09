@@ -12,20 +12,37 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import MenuIcon from "@mui/icons-material/Menu";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import React from "react";
 
 const pages = [
   { title: "Builder", link: "/" },
   {
-    title: "About",
-    link: "https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage#security_concerns",
-  },
-  {
     title: "Playground",
     link: "/playground",
   },
+  {
+    title: "About",
+    link: "https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage#security_concerns",
+  },
 ];
 
+function handleMenuSelection(link: string) {
+  window.location.href = link;
+}
+
 function AppNavBar() {
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null,
+  );
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -55,14 +72,14 @@ function AppNavBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               data-testid={"hi"}
-              onClick={() => {}}
+              onClick={handleOpenNavMenu}
               color={"inherit"}
             >
               <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={null}
+              anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left",
@@ -72,14 +89,17 @@ function AppNavBar() {
                 vertical: "top",
                 horizontal: "left",
               }}
-              open={false}
-              onClose={() => {}}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.title} href={page.link}>
+                <MenuItem
+                  key={page.title}
+                  onClick={() => handleMenuSelection(page.link)}
+                >
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
@@ -117,31 +137,13 @@ function AppNavBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton color={"inherit"} size="large" onClick={() => {}}>
+            <IconButton
+              color={"inherit"}
+              size="large"
+              href={"https://github.com/birch-jayton/message-postinator"}
+            >
               <GitHubIcon />
             </IconButton>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={null}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={false}
-              onClose={() => {}}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.title} href={page.link}>
-                  <Typography textAlign="center">{page.title}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
         </Toolbar>
       </Container>
