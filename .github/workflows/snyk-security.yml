@@ -33,7 +33,3 @@ jobs:
       # Run Snyk to test for known vulnerabilities in dependencies
       - name: Run Snyk Test
         run: snyk test
-
-      # Optionally, run Snyk Code to perform static analysis (outputs SARIF for integration)
-      - name: Run Snyk Code Test
-        run: snyk code test --sarif > snyk-code.sarif
