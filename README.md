@@ -18,4 +18,4 @@ Check out the [mdn docs regarding security concerns with postMessage()](https://
 #### Blaster Builder
 message-postinator can be used to build webpages that post messages that you define to the frame's parent. You can then test web apps that reflect user-defined iframes by using the message blaster that you created. 
 #### Playground
-You can test your Blasters in the playground
+You can test your Blasters in the playground.
